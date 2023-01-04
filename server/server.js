@@ -17,7 +17,7 @@ app.use(express.urlencoded({extended:false}))
 app.get('/', function(req, res){
   
 
-    res.render('register')
+    res.render('login')
 })
 app.get('/login', function(req, res){
   
