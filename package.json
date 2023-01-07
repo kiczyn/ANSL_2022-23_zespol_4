@@ -13,10 +13,12 @@
     "nodemon": "^2.0.20"
   },
   "dependencies": {
+    "directory-tree": "^3.5.1",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
     "mongoose": "^6.8.2",
+    "schema-object": "^4.0.11",
     "socket.io": "^4.5.4"
   }
 }

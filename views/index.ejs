@@ -5,10 +5,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pen & sword</title>
+    
 </head>
 <body>
-    <h1>Home</h1>
-    <script src="/socket.io/socket.io.js"></script>
-    <script type="text/javascript" src="../public/js/index.js"></script>
+    
+    <button id="demo" onclick="szukaj()">Znajdź oponenta</button>
+    <p id="p1">Hello World!</p>
+    <form action="/wyloguj" method="POST">
+        
+        
+        <button name="logout" type="submit" onclick="wylog()">Wyloguj</button>
+    </form>
+
+
+    <form id="q" action="/play" method="POST">
+        <button id="b1" name="b1" hidden></button>
+    </form>
+    <p id="login" >xd</p>
+    <p id="test">w</p>
+    <p id="wtf">o</p>
+         <script src="/socket.io/socket.io.js"></script>
+         <script >
+            var socket = io();
+            function szukaj(){
+                
+                socket.emit("find");
+                document.getElementById("demo").disabled=true;
+            }
+            function wylog(){
+                socket.emit("logout");
+            }
+            
+            socket.on('login',(x)=>{
+                document.getElementById("login").innerHTML = x;
+                socket.emit('login')
+            })
+
+
+            socket.on('room',(data2)=>{
+                document.getElementById("p1").innerHTML=data2;
+                
+            })
+            socket.on('play',(x)=>{
+                document.getElementById("test").innerHTML="wysk"
+                document.getElementById('b1').click();
+            })
+
+
+         </script>
 </body>
 </html>

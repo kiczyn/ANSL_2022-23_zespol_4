@@ -1,20 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pen & sword</title>
-</head>
-<body>
-    <h2>login</h2>
-    <form action="/login" method="post">
-        <label >Login:</label><br>
-        <input type="text" id="log" name="login" placeholder="login"><br>
-        <label >Hasło:</label><br>
-        <input type="password" id="pw" name="haslo" placeholder="haslo"><br><br>
-        <input type="submit" value="login">
-        <a href="./register">Przejdz do rejestracji</a>
-      </form>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- CSS -->
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap");
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-transform: uppercase;
+  }
+  
+  body {
+    background: #7057e0;
+    font-family: "Open Sans", sans-serif;
+  }
+
+  #particles-js canvas {
+    display: block;
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+    -webkit-transition: opacity .8s ease, -webkit-transform 1.4s ease;
+    transition: opacity .8s ease, transform 1.4s ease
+  }
+
+  #particles-js {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -10;
+    top: 0;
+    left: 0
+  }
+
+  h1 {
+    padding: 40px 50px 0 35px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .login-form {
+    background: #fff;
+    width: 500px;
+    margin: 65px auto;
+    margin-top: 10%;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+    border-radius: 4px;
+    box-shadow: 0 2px 25px rgba(0, 0, 0, 0.2);
+  }
+
+  .login-form .content {
+    padding: 50px;
+    text-align: center;
+  }
+
+  .login-form .input-field {
+    padding: 12px 5px;
+  }
+
+  .login-form .input-field input {
+    font-size: 16px;
+    display: block;
+    font-family: "Open Sans", sans-serif;
+    width: 100%;
+    padding: 10px 1px;
+    border: 0;
+    border-bottom: 1px solid #747474;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+    text-transform: none;
+  }
+
+  .login-form .action {
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-direction: row;
+  }
+
+  .login-form .action button {
+    width: 100%;
+    border: none;
+    padding: 25px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 115%;
+    cursor: pointer;
+    color: #777;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 0;
+
+    outline: 0;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+  }
+
+  .login-form .action button:hover {
+    background: #d8d8d8;
+  }
+
+  .login-form .action button:nth-child(2) {
+    background: #2d3b55;
+    color: #fff;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 4px;
+  }
+  
+  .login-form .action button:nth-child(2):hover {
+    background: #3c4d6d;
+  }
+
+        </style>
+        <title>Pen & Sword - Card Game</title>
+    </head>
+    
+    <body>
+        
+        
+        <div class="login-form">
+            <form action="/login" method="post">
+                <h1>Logowanie</h1>
+                <div class="content">
+                    <div class="input-field">
+                        <input type="text" id="log" name="login" placeholder="LOGIN" autocomplete="nope" required>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" id="pw" name="haslo" placeholder="HASŁO" required>
+                    </div>
+                </div>
+                <div class="action">
+                    <button>
+                        <a href="./register" class="button">Rejestracja</a>
+                    </button>
+                    <button type="submit">Zaloguj</button>
+                </div>
+            </form>
+        </div>
+
+    </body>
 </html>

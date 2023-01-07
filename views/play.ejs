@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+
+        body {
+                font-family: "Helvetica Neue", sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: dimgrey;
+                }
+
+
+        .plansza{
+                background-color:rgb(124, 120, 120);
+                color:#FFF;                
+                border-radius:0.25em;
+                width:800px;
+                min-height: 23vh;
+                border-style: solid;
+                border-color: black;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                }
+        button {
+                text-transform: uppercase;
+                font-size: 0.8rem;
+                padding: 3px 15px;
+                color: white;
+                line-height: 25px;
+                background-color: #00bcd4;
+                border: none;
+                border-radius: 2px;
+                cursor: pointer;
+                box-shadow: rgba(0, 0, 0, 0.12) 0 1px 6px, rgba(0, 0, 0, 0.12) 0 1px 4px;
+                transition: all 150ms ease-in;
+                outline: none;
+                }
+        #p11{
+                border-bottom-style: none;
+                }
+        .hp{
+            border-left-style: solid;
+            border-right-style: solid;
+            display: flex;
+                
+                justify-content: center;
+                
+        }
+        #b1{
+            background-color: blue;
+        }
+        #reka2{
+                border-bottom-style: none;
+                }
+        .tabela{
+                position: absolute;
+                bottom: 8px;
+                
+        }
+
+        .karta_kontener {
+                position: relative;
+                text-align: center;
+                color: white;
+        }
+        .karta_kontener_enm{
+                position: relative;
+                text-align: center;
+                color: white;
+        }
+        #zatwierdz{
+                position: relative;
+                text-align: center;
+                width:800px;
+                align-items: center;
+                justify-content: center;
+        }
+        .main{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+                justify-content: center;
+        }
+        #t0{
+            align-self: flex-start;
+            border-style: solid;
+            
+            width: 100%;
+            
+        }    
+            #t2{
+            width: 100%;
+           background-color: crimson;
+           
+        }
+        #t1{
+            width: 100%;
+            background-color: brown;
+            
+        }
+        button:disabled,
+        button[disabled]{
+            border: 1px solid #999999;
+            background-color: #cccccc;
+            color: #666666;
+        }
+
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <form action="/end" method="POST">
+        
+        
+        <button name="end" id="end" type="submit"  hidden>Wyloguj</button>
+    </form>
+    <div class="main" id="main">
+        <div>
+            <div id="reka2" class="plansza"></div>
+            <div class="plansza" id="p12"></div>
+            <div class="hp" id="hp">
+                <table id="t1" >   
+
+                    <th>Gracz</th>
+                    <th id="b1">20</th>
+                </table>
+                <table id="t2">
+                    
+                    <th id="b2">20</th>
+                    <th>Przeciwnik</th>
+                </table>
+           
+               
+            </div>
+            <div class="plansza" id="p11" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+            <div id="reka" class="plansza" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>
+        </div>
+        <button id="zatwierdz" onclick="send()">zatwierdz</button>
+    
+    </div>
+   
+        <p id="stat"></p>
+        <p id="id2" >xddd</p>
+        <p id="temp2">owo</p>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+
+        var karty=0;
+        var atak;        
+        var zycie;
+        var koszt;
+        
+        var socket = io();
+
+
+
+        socket.emit('room2');
+
+        socket.on('room2',id=>{
+                document.getElementById("id2").innerHTML=id;
+                
+        })
+        var bool=1;
+        function send(){
+            bool=1;
+            var co_wyslac=document.getElementById("p11");
+            var child=co_wyslac.childNodes;
+            document.getElementById("zatwierdz").disabled=true;
+            
+
+            [].forEach.call(child,function(child){
+                if(child.nodeName=="DIV"){
+                    console.log("atakx"+child.id);
+                    console.log( document.getElementById("zycie"+child.id).innerText)
+                    
+                    var grandchild=child.childNodes;
+
+                    [].forEach.call(grandchild,function(grandchild){
+                        console.log("atak"+grandchild.nodeName);
+                        if(grandchild.nodeName=="IMG"){
+                            socket.emit("dane",document.getElementById("id2").innerHTML, grandchild.src,document.getElementById("atak"+child.id).innerText,document.getElementById("koszt"+child.id).innerText,document.getElementById("zycie"+child.id).innerText,karty,bool)
+                            bool=0;
+                        }
+               
+
+                    })
+                }   
+                    
+    
+            })
+
+                
+        }
+        function clear_enemy(){
+            socket.emit('clear')
+        }
+        socket.on('clear',()=>{
+            var list=document.getElementById('p12');
+            while (list.hasChildNodes()) {
+                list.removeChild(list.lastChild);
+            }
+        })
+        var enm=0;
+        
+        socket.on("enm_card",(link,atakx,kosztx,zyciex,karty_left,bl)=>{
+            if(bl==1){
+                var rr1=document.getElementById("p12");
+                while(rr1.hasChildNodes()){
+                    rr1.removeChild(rr1.lastChild);
+                }
+            }
+            console.log((karty_left));
+            var rr=document.getElementById("reka2");
+                while(rr.hasChildNodes()){
+                    rr.removeChild(rr.lastChild);
+                }
+            for(var i=0;i<karty_left-enm-1;i++){
+
+                var bck=document.createElement("img");
+                bck.src="https://play-lh.googleusercontent.com/2Zuk6hJLAfqP3HjG0_8PNpnKzKpECfPKN0bYIuPeVYHWGEsS8Lyv450HIiVAIZpn7w";
+                bck.height=250;
+                bck.width=120;
+                rr.appendChild(bck);
+
+
+
+            }
+            document.getElementById("temp2").innerHTML=link+" "+atakx+" "+kosztx+" "+zyciex;
+            var div=document.createElement("div");
+            var src=document.getElementById('p12');
+            div.id=enm+"div";
+
+            var img = document.createElement("img");
+            div.className="karta_kontener_enm";      
+            img.id="img"+enm;
+            img.alt=enm;
+            img.className="karta_img";
+            img.src=link;
+            img.height=250;
+            img.width=120;
+            img.draggable=false;
+            src.appendChild(div);
+            div.appendChild(img);
+            create_table(enm+"div",atakx,kosztx,zyciex);
+            enm++;
+            if(document.getElementById("zatwierdz").disabled){
+                graj();
+            }
+        })
+        var atak_total=0;
+            var zycie_total=0;
+        function graj(){
+            atak_total=0;
+            zycie_total=0
+            var co_wyslac=document.getElementById("p11");
+            var child=co_wyslac.childNodes;         
+            
+
+            [].forEach.call(child,function(child){
+                if(child.nodeName=="DIV"){
+                    atak_total+=parseInt(document.getElementById("atak"+child.id).innerText);
+                    zycie_total+=parseInt(document.getElementById("zycie"+child.id).innerText);
+                }
+                
+
+
+            })
+            socket.emit('battle',document.getElementById("id2").innerHTML,atak_total);
+
+        }
+
+        function reset(karty_3){
+            document.getElementById("zatwierdz").disabled=false;
+            
+             enm=0;
+             if(karty<7){
+                socket.emit('dej')
+             }
+            if(karty_3<7){
+                var rr=document.getElementById("reka2");
+             var bck=document.createElement("img");
+                bck.src="https://play-lh.googleusercontent.com/2Zuk6hJLAfqP3HjG0_8PNpnKzKpECfPKN0bYIuPeVYHWGEsS8Lyv450HIiVAIZpn7w";
+                bck.height=250;
+                bck.width=120;
+                rr.appendChild(bck);
+
+            }
+
+
+
+
+        }
+
+
+
+
+        socket.on('battle2',at=>{
+            
+            zycie_total=0
+            var co_wyslac=document.getElementById("p11");
+            var child=co_wyslac.childNodes;         
+            
+
+            [].forEach.call(child,function(child){
+                if(child.nodeName=="DIV"){
+                    zycie_total+=parseInt(document.getElementById("zycie"+child.id).innerText);
+                }                
+
+            })
+            if(zycie_total<at){
+                document.getElementById("b1").innerText=parseInt( document.getElementById("b1").innerText)-at+zycie_total;
+            }
+            if(parseInt( document.getElementById("b1").innerText)<=0){
+                
+                if(!alert("przegrana")){
+                    socket.emit('koniec',document.getElementById("id2").innerHTML)
+                }
+                
+
+
+
+            }
+            
+                    reset();
+                
+            socket.emit("zycie",document.getElementById("id2").innerHTML,document.getElementById("b1").innerText,karty);
+        })
+        socket.on('koniec',()=>{
+            document.getElementById("end").click();
+        })
+
+        socket.on('zycie',(hpp,karty_2)=>{
+            document.getElementById("b2").innerText=hpp;
+            reset(karty_2);
+        })
+
+        for(var i=0;i<5;i++)
+                socket.emit('dej');
+        
+        function create_table(ojciec,a,k,z){
+            var table=document.createElement("table");
+            table.className="tabela";
+            var tr=document.createElement("tr")
+            table.width=document.getElementById("img1").width;
+            var th_atak=document.createElement('th');
+            var th_koszt=document.createElement('th');
+            var th_zycie=document.createElement('th');
+            th_atak.innerText=a;
+            th_atak.className="th_atak";
+            th_atak.id="atak"+ojciec;
+            th_zycie.id="zycie"+ojciec;
+            th_koszt.id="koszt"+ojciec;
+            th_zycie.className="th_zycie";
+            th_koszt.className="th_koszt";
+            th_zycie.innerText=z;
+            th_koszt.innerText=k;
+            var dodaj=document.getElementById(ojciec);
+            dodaj.appendChild(table);
+            table.appendChild(tr);
+            tr.appendChild(th_atak);
+            tr.appendChild(th_koszt);
+            tr.appendChild(th_zycie);
+
+        }
+        
+
+        socket.on('wynik',(x0,x1,x2,x3)=>{
+            document.getElementById('stat').innerHTML=document.getElementById('stat').innerHTML+x0+" "+x1+" "+x2+" "+x3+"||||";
+            atak=x1;        
+            zycie=x2;
+            koszt=x0;
+            karty++;
+
+            var div=document.createElement("div");
+            var src=document.getElementById('reka');
+            div.id=karty+"div";
+            var img = document.createElement("img");
+            div.className="karta_kontener";      
+            img.id="img"+karty;
+            img.alt=karty;
+            img.className="karta_img";
+            img.src=x3;
+            img.height=250;
+            img.width=120;
+            img.draggable="true";
+            img.ondragover=function(){return false};
+            img.ondragstart=function drag(ev) {
+                ev.dataTransfer.setData("text", document.getElementById(ev.target.id).parentElement.id);
+            }
+            
+            src.appendChild(div);
+            div.appendChild(img);
+            create_table(karty+"div",atak,koszt,zycie);
+        })
+        
+
+                
+            
+        function drag(ev) {
+            ev.dataTransfer.setData("text", document.getElementById(ev.target.id).parentElement.id);
+                
+        }
+
+        function drop(ev) {
+            if(ev.target.nodeName !== "IMG" ){
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        }}
+        function allowDrop(ev) {
+            ev.preventDefault();
+            }
+
+    </script>
+</body>
+</html>
