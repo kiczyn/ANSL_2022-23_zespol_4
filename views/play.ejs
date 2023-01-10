@@ -58,8 +58,8 @@
                 }
         .tabela{
                 position: absolute;
-                bottom: 8px;
-                
+                bottom: 20px;
+                font-size: 1.2rem;
         }
 
         .karta_kontener {
@@ -108,6 +108,10 @@
             background-color: #cccccc;
             color: #666666;
         }
+        #zloto{
+            margin-left: 5%;
+            margin-right: 5%;
+        }
 
     </style>
     <title>Document</title>
@@ -144,9 +148,9 @@
     
     </div>
    
-        <p id="stat"></p>
-        <p id="id2" >xddd</p>
-        <p id="temp2">owo</p>
+        <p id="stat" hidden></p>
+        <p id="id2" hidden>xddd</p>
+        <p id="temp2" hidden>owo</p>
     <script src="/socket.io/socket.io.js"></script>
     <script>
 
@@ -177,13 +181,13 @@
 
             [].forEach.call(child,function(child){
                 if(child.nodeName=="DIV"){
-                    console.log("atakx"+child.id);
-                    console.log( document.getElementById("zycie"+child.id).innerText)
+                   // console.log("atakx"+child.id);
+                  //  console.log( document.getElementById("zycie"+child.id).innerText)
                     
                     var grandchild=child.childNodes;
 
                     [].forEach.call(grandchild,function(grandchild){
-                        console.log("atak"+grandchild.nodeName);
+                       // console.log("atak"+grandchild.nodeName);
                         if(grandchild.nodeName=="IMG"){
                             socket.emit("dane",document.getElementById("id2").innerHTML, grandchild.src,document.getElementById("atak"+child.id).innerText,document.getElementById("koszt"+child.id).innerText,document.getElementById("zycie"+child.id).innerText,karty,bool)
                             bool=0;
@@ -216,7 +220,7 @@
                     rr1.removeChild(rr1.lastChild);
                 }
             }
-            console.log((karty_left));
+           // console.log((karty_left));
             var rr=document.getElementById("reka2");
                 while(rr.hasChildNodes()){
                     rr.removeChild(rr.lastChild);
@@ -411,9 +415,9 @@
 
             [].forEach.call(child,function(child){
                 if(child.nodeName=="DIV"){
-                    console.log("koszt"+child.id);
+                    //console.log("koszt"+child.id);
                     lp+=1;
-                    console.log(lp)
+                    //console.log(lp)
                     if(parseInt( document.getElementById("koszt"+child.id).innerText)<=parseInt(document.getElementById('zloto').innerHTML)){
                         document.getElementById("img"+child.id.replace("div","")).draggable=true;
                         document.getElementById("img"+child.id.replace("div","")).border="solid";
@@ -444,7 +448,7 @@
             ev.preventDefault();
             var data = ev.dataTransfer.getData("text");
             ev.target.appendChild(document.getElementById(data));
-            console.log(data)
+            //console.log(data)
             if(ev.target.id=="reka")
             document.getElementById('zloto').innerHTML=parseInt(document.getElementById('zloto').innerHTML)+parseInt( document.getElementById("koszt"+data).innerText)
             else
