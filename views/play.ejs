@@ -38,6 +38,7 @@
                 box-shadow: rgba(0, 0, 0, 0.12) 0 1px 6px, rgba(0, 0, 0, 0.12) 0 1px 4px;
                 transition: all 150ms ease-in;
                 outline: none;
+
                 }
         #p11{
                 border-bottom-style: none;
@@ -420,9 +421,10 @@
                     //console.log(lp)
                     if(parseInt( document.getElementById("koszt"+child.id).innerText)<=parseInt(document.getElementById('zloto').innerHTML)){
                         document.getElementById("img"+child.id.replace("div","")).draggable=true;
-                        document.getElementById("img"+child.id.replace("div","")).border="solid";
+                        document.getElementById("img"+child.id.replace("div","")).style.borderStyle="solid";
                     }else{
                         document.getElementById("img"+child.id.replace("div","")).draggable=false;
+                        document.getElementById("img"+child.id.replace("div","")).style.borderStyle="none";
                     }
                 
                 }})
