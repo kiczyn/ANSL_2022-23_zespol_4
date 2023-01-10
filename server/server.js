@@ -14,7 +14,7 @@ const model2 = require('../karty');
 const http = require('http').Server(app);
 const socket=require('socket.io')(http);
 db();
-app.use(express.static('public')); //  do moich chujów cssów i innych javascriptów
+app.use(express.static('public')); //  do moich cssów i innych javascriptów
 app.set('views', path.join(__dirname, '../views'))
 app.use(express.static(__dirname +"/views/assets"));
 app.set('view engine', 'ejs')
