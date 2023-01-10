@@ -1,121 +1,102 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap");
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-transform: uppercase;
-  }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-transform: uppercase;
+}
   
-  body {
-    background: #142641;
-    font-family: "Open Sans", sans-serif;
-  }
-
-  #particles-js canvas {
-    display: block;
-    -webkit-transform: scale(1);
-    -ms-transform: scale(1);
-    transform: scale(1);
-    opacity: 1;
-    -webkit-transition: opacity .8s ease, -webkit-transform 1.4s ease;
-    transition: opacity .8s ease, transform 1.4s ease
-  }
-
-  #particles-js {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: -10;
-    top: 0;
-    left: 0
-  }
-
-  h1 {
-    padding: 40px 50px 0 35px;
-  }
-
-  a {
-    text-decoration: none;
-    color: #e9aa28;
-  }
-  
-  .login-form {
-    background: #0f1a29;
-    color: #e9aa28;
-    width: 500px;
-    margin: 65px auto;
-    margin-top: 10%;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-            flex-direction: column;
-    border-radius: 4px;
-    box-shadow: 0 2px 25px rgba(0, 0, 0, 0.2);
-  }
-
-  .login-form .content {
-    padding: 50px;
-    text-align: center;
-  }
-
-  .login-form .input-field {
-    padding: 12px 5px;
-  }
-
-  .login-form .input-field input {
-    color:#e9aa28;
-    background: #0f1a29;
-    font-size: 16px;
-    display: block;
-    font-family: "Open Sans", sans-serif;
-    width: 100%;
-    padding: 10px 1px;
-    border: 0;
-    border-bottom: 1px solid #747474;
-    -webkit-transition: all .2s;
-    transition: all .2s;
-    text-transform: none;
-  }
-
-  *:focus {
-    outline: none;
+body {
+  background: #142641;
+  font-family: "Open Sans", sans-serif;
 }
 
-  .login-form .action {
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-            flex-direction: row;
-  }
+h1 {
+  padding: 40px 50px 0 35px;
+}
 
-  .login-form .action button {
-    width: 100%;
-    border: none;
-    padding: 25px;
-    font-family: "Open Sans", sans-serif;
-    font-size: 115%;
-    cursor: pointer;
-    color: #777;
-    background: #122033;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 0;
-
-    outline: 0;
-    -webkit-transition: all .3s;
-    transition: all .3s;
-  }
-
-  .login-form .action button:hover {
-    background: #0d1826;
-  }
-
-  .login-form .action button:nth-child(2) {
-    background: #e9aa28;
-    color: #42270c;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 4px;
-  }
+a {
+  text-decoration: none;
+  color: #e9aa28;
+}
   
-  .login-form .action button:nth-child(2):hover {
-    background: #ffa800;
-  }
+.login-form {
+  background: #0f1a29;
+  color: #e9aa28;
+  width: 500px;
+  margin: 65px auto;
+  margin-top: 10%;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  border-radius: 4px;
+  box-shadow: 0 2px 25px rgba(0, 0, 0, 0.2);
+}
+
+.login-form .content {
+  padding: 50px;
+  text-align: center;
+}
+
+.login-form .input-field {
+  padding: 12px 5px;
+}
+
+.login-form .input-field input {
+  color:#e9aa28;
+  background: #0f1a29;
+  font-size: 16px;
+  display: block;
+  font-family: "Open Sans", sans-serif;
+  width: 100%;
+  padding: 10px 1px;
+  border: 0;
+  border-bottom: 1px solid #747474;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  text-transform: none;
+}
+
+*:focus {
+  outline: none;
+}
+
+.login-form .action {
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+}
+
+.login-form .action button {
+  width: 100%;
+  border: none;
+  padding: 25px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 115%;
+  cursor: pointer;
+  color: #777;
+  background: #122033;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 0;
+  outline: 0;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+.login-form .action button:hover {
+  background: #0d1826;
+}
+
+.login-form .action button:nth-child(2) {
+  background: #e9aa28;
+  color: #42270c;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 4px;
+}
+  
+.login-form .action button:nth-child(2):hover {
+  background: #ffa800;
+}

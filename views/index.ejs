@@ -4,24 +4,36 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css"   href="/css/particles.css">
+        <link rel="stylesheet" type="text/css"   href="/css/lobby.css">
         <title>Pen & sword</title>
     </head>
 
     <body>
-        <button id="demo" onclick="szukaj()">Znajdź oponenta</button>
-        <p id="p1">Hello World!</p>
-        <form action="/wyloguj" method="POST">
-            <button name="logout" type="submit" onclick="wylog()">Wyloguj</button>
-        </form>
+        <div id="particles-js"><canvas class="particles-js-canvas-el"></canvas></div>
+
+        <div class="lobby-form">
+            
+            <div class="action">
+                <button id="demo" onclick="szukaj()">Znajdź oponenta</button>
+            </div>
+            <p id="p1">Witaj Graczu!</p>
+
+            <div class="action">
+                <form action="/wyloguj" method="POST">
+                    <button name="logout" type="submit" onclick="wylog()">Wyloguj</button>
+                </form>
+            </div>
         
-        <form id="q" action="/play" method="POST">
-            <button id="b1" name="b1" hidden></button>
-        </form>
-        
-        <p id="login" >xd</p>
-        <p id="test">w</p>
-        <p id="wtf">o</p>
-        
+            <form id="q" action="/play" method="POST">
+                <button id="b1" name="b1" hidden></button>
+            </form>
+            
+            <p id="login" >xd</p>
+            <p id="test">w</p>
+            <p id="wtf">o</p>
+        </div>
+
         <script src="/socket.io/socket.io.js"></script>
         <script >
             
@@ -50,6 +62,9 @@
                 document.getElementById('b1').click();
             })
         </script>
-        
+
+        <script src="/scripts/particles.js"></script>
+        <script src="/scripts/particles_theme.js"></script>
+
     </body>
 </html>
