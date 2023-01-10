@@ -128,6 +128,7 @@
                     <th>Gracz</th>
                     <th id="b1">20</th>
                 </table>
+                <p id="zloto">1</p>
                 <table id="t2">
                     
                     <th id="b2">20</th>
@@ -170,6 +171,8 @@
             var co_wyslac=document.getElementById("p11");
             var child=co_wyslac.childNodes;
             document.getElementById("zatwierdz").disabled=true;
+            if( zloto<=10)
+            zloto+=1;
             
 
             [].forEach.call(child,function(child){
@@ -275,7 +278,7 @@
 
         function reset(karty_3){
             document.getElementById("zatwierdz").disabled=false;
-            
+            document.getElementById('zloto').innerHTML=zloto;
              enm=0;
              if(karty<7){
                 socket.emit('dej')
@@ -294,8 +297,7 @@
 
 
         }
-
-
+        var zloto=1;
 
 
         socket.on('battle2',at=>{
@@ -324,7 +326,7 @@
 
 
             }
-            
+  
                     reset();
                 
             socket.emit("zycie",document.getElementById("id2").innerHTML,document.getElementById("b1").innerText,karty);
@@ -336,6 +338,8 @@
         socket.on('zycie',(hpp,karty_2)=>{
             document.getElementById("b2").innerText=hpp;
             reset(karty_2);
+
+          
         })
 
         for(var i=0;i<5;i++)
@@ -386,7 +390,7 @@
             img.src=x3;
             img.height=250;
             img.width=120;
-            img.draggable="true";
+            img.draggable=false;
             img.ondragover=function(){return false};
             img.ondragstart=function drag(ev) {
                 ev.dataTransfer.setData("text", document.getElementById(ev.target.id).parentElement.id);
@@ -395,9 +399,39 @@
             src.appendChild(div);
             div.appendChild(img);
             create_table(karty+"div",atak,koszt,zycie);
+            is_playable();
         })
-        
+        var lpp=1;
+        function is_playable(){
+            //tutaj pisze
+            var co_wyslac=document.getElementById("reka");
+            var child=co_wyslac.childNodes;
+           
+            var lp=0;
 
+            [].forEach.call(child,function(child){
+                if(child.nodeName=="DIV"){
+                    console.log("koszt"+child.id);
+                    lp+=1;
+                    console.log(lp)
+                    if(parseInt( document.getElementById("koszt"+child.id).innerText)<=parseInt(document.getElementById('zloto').innerHTML)){
+                        document.getElementById("img"+child.id.replace("div","")).draggable=true;
+                        document.getElementById("img"+child.id.replace("div","")).border="solid";
+                    }else{
+                        document.getElementById("img"+child.id.replace("div","")).draggable=false;
+                    }
+                
+                }})
+                if(lp<7){
+                   lpp=1
+                }
+                else
+                {
+                    lpp=0
+                }
+
+
+        }
                 
             
         function drag(ev) {
@@ -410,8 +444,15 @@
             ev.preventDefault();
             var data = ev.dataTransfer.getData("text");
             ev.target.appendChild(document.getElementById(data));
+            console.log(data)
+            if(ev.target.id=="reka")
+            document.getElementById('zloto').innerHTML=parseInt(document.getElementById('zloto').innerHTML)+parseInt( document.getElementById("koszt"+data).innerText)
+            else
+            document.getElementById('zloto').innerHTML=parseInt(document.getElementById('zloto').innerHTML)-parseInt( document.getElementById("koszt"+data).innerText)
+            is_playable();
         }}
         function allowDrop(ev) {
+            if(lpp==1||ev.target.id!='reka')
             ev.preventDefault();
             }
 
