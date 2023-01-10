@@ -105,10 +105,11 @@ socket.on('connection', function(io) {
           })
     })
     
-    io.on('dane',(id,atak,koszt,zycie,link,karty,bool)=>{
+    io.on('dane',(id,link,atak,koszt,zycie,karty,bool)=>{
         
-        console.log(id,atak,koszt,zycie,link,karty,bool)
-        io.in(id).emit('enm_card', atak,koszt,zycie,link,karty,bool);
+        console.log(id,link,atak,koszt,zycie,karty,bool)
+        
+        io.in(id).emit('enm_card', link,atak,koszt,zycie,karty,bool);
 
 
 

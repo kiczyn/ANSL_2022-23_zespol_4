@@ -172,6 +172,7 @@
         })
         var bool=1;
         function send(){
+            is_playable()
             bool=1;
             var co_wyslac=document.getElementById("p11");
             var child=co_wyslac.childNodes;
@@ -179,6 +180,10 @@
             if( zloto<=10)
             zloto+=1;
             
+            if(co_wyslac.childElementCount == 0){
+                console.log('errrrrrrrrrr')
+                socket.emit("dane",document.getElementById("id2").innerHTML,0,0,0,0,karty,bool)
+            }
 
             [].forEach.call(child,function(child){
                 if(child.nodeName=="DIV"){
@@ -238,13 +243,14 @@
 
             }
             document.getElementById("temp2").innerHTML=link+" "+atakx+" "+kosztx+" "+zyciex;
+           if(link!=0){
             var div=document.createElement("div");
             var src=document.getElementById('p12');
-            div.id=enm+"div";
+            div.id="enm"+enm+"div";
 
             var img = document.createElement("img");
             div.className="karta_kontener_enm";      
-            img.id="img"+enm;
+            img.id="img"+enm+"enm";
             img.alt=enm;
             img.className="karta_img";
             img.src=link;
@@ -253,8 +259,8 @@
             img.draggable=false;
             src.appendChild(div);
             div.appendChild(img);
-            create_table(enm+"div",atakx,kosztx,zyciex);
-            enm++;
+            create_table("enm"+enm+"div",atakx,kosztx,zyciex);
+            enm++;}
             if(document.getElementById("zatwierdz").disabled){
                 graj();
             }
@@ -310,7 +316,7 @@
             zycie_total=0
             var co_wyslac=document.getElementById("p11");
             var child=co_wyslac.childNodes;         
-            
+            is_playable();
 
             [].forEach.call(child,function(child){
                 if(child.nodeName=="DIV"){
@@ -344,7 +350,7 @@
             document.getElementById("b2").innerText=hpp;
             reset(karty_2);
 
-          
+            is_playable()
         })
 
         for(var i=0;i<5;i++)
