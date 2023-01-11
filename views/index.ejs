@@ -13,25 +13,34 @@
         <div id="particles-js"><canvas class="particles-js-canvas-el"></canvas></div>
 
         <div class="lobby-form">
-            
+
+            <p id="p1">Witaj Graczu!</p>
+            <p id="login" >NAZWA_UZYTKOWNIKA</p>
+
             <div class="action">
                 <button id="demo" onclick="szukaj()">Znajdź oponenta</button>
             </div>
-            <p id="p1">Witaj Graczu!</p>
+
+            <div class="action">
+                <button>PUSTO</button>
+            </div>
 
             <div class="action">
                 <form action="/wyloguj" method="POST">
                     <button name="logout" type="submit" onclick="wylog()">Wyloguj</button>
                 </form>
             </div>
+
+            <div class="action">
+                <button>PUSTO</button>
+            </div>
         
             <form id="q" action="/play" method="POST">
                 <button id="b1" name="b1" hidden></button>
             </form>
             
-            <p id="login" >xd</p>
-            <p id="test">w</p>
-            <p id="wtf">o</p>
+            <p id="test"></p>
+            <p id="wtf"></p>
         </div>
 
         <script src="/socket.io/socket.io.js"></script>

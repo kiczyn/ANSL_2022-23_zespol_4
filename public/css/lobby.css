@@ -11,24 +11,19 @@
     font-family: "Open Sans", sans-serif;
   }
 
-  h1 {
-    padding: 40px 50px 0 35px;
-    text-align: center;
-  }
 
-  a {
-    text-decoration: none;
-    color: #e9aa28;
-  }
-  
   p {
-    text-align: center
+    text-align: center;
+    margin-bottom: 15px;
   }
   
   .lobby-form {
+    align-items: center;
+    justify-content: center;
     background: #0f1a29;
     color: #e9aa28;
-    width: 500px;
+    width: 450px;
+    min-height: 500px;
     margin: 65px auto;
     margin-top: 10%;
     display: flex;
@@ -40,7 +35,8 @@
   }
 
   .lobby-form .action button {
-    width: 100%;
+    margin-bottom: 10px;
+    width: 250px;
     border: none;
     padding: 25px;
     font-family: "Open Sans", sans-serif;
