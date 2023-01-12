@@ -14,16 +14,24 @@
 
         <div class="lobby-form">
 
-            <p id="p1">Witaj Graczu!</p>
+            <h1>Witaj Graczu!</h1>
             <p id="login" >NAZWA_UZYTKOWNIKA</p>
 
             <div class="action">
-                <button id="demo" onclick="szukaj()">Znajdź oponenta</button>
+                <button id="demo" onclick="szukaj()" >Znajdź oponenta</button>
+                <script>
+                    const btn = document.getElementById('demo');
+                    btn.addEventListener('click', function onClick() {
+                    btn.style.backgroundColor = '#d25f51';
+                    btn.style.color = 'white';
+                    btn.innerHTML = 'Szukam...';
+                    });
+                </script>
             </div>
 
-            <div class="action">
-                <button>PUSTO</button>
-            </div>
+            <!-- <div class="action">
+                <button>Pusto</button>
+            </div> -->
 
             <div class="action">
                 <form action="/wyloguj" method="POST">
@@ -31,16 +39,22 @@
                 </form>
             </div>
 
-            <div class="action">
+            <!-- <div class="action">
                 <button>PUSTO</button>
-            </div>
+            </div> -->
         
             <form id="q" action="/play" method="POST">
                 <button id="b1" name="b1" hidden></button>
             </form>
-            
+
             <p id="test"></p>
+
+            <div class="box">
+                <span><p id="p1"></p></span>
+            </div>
+
             <p id="wtf"></p>
+
         </div>
 
         <script src="/socket.io/socket.io.js"></script>

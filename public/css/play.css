@@ -11,7 +11,7 @@
                 color:#FFF;                
                 border-radius:0.25em;
                 width:800px;
-                min-height: 23vh;
+                min-height: 20vh;
                 border-style: solid;
                 border-color: black;
                 margin: 0 auto;
@@ -41,6 +41,8 @@
             border-left-style: solid;
             border-right-style: solid;
             display: flex;
+            
+
                 
                 justify-content: center;
                 
@@ -61,6 +63,7 @@
                 position: relative;
                 text-align: center;
                 color: white;
+                height: 100%;
         }
         .karta_kontener_enm{
                 position: relative;
@@ -106,4 +109,5 @@
         #zloto{
             margin-left: 5%;
             margin-right: 5%;
+            height: 1vh;
         }

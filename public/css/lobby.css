@@ -11,6 +11,31 @@
     font-family: "Open Sans", sans-serif;
   }
 
+  .box{
+    top: 0; left: 0;
+    right: 0; bottom: 0;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+  }
+  .box span{
+    position: relative;
+    top: 8px;
+    display: inline-block;
+    animation: bounce 0.4s ease infinite alternate;
+  }
+  @keyframes bounce{
+    100%{
+      top: -5px;
+      text-shadow: 0 1px #0f1a29, 
+                   0 2px #0f1a29, 
+                   0 3px #0f1a29, 
+                   0 4px #0f1a29, 
+                   0 5px #0f1a29,
+
+                   0 50px 25px rgba(0, 0, 0, 0.2);
+    }
+  }
 
   p {
     text-align: center;
