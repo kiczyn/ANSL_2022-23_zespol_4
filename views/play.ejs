@@ -316,8 +316,13 @@
 
             [].forEach.call(child,function(child){
                 if(child.nodeName=="DIV"){
-                    karty_nowe++;
+                    
+                   if(parseInt(child.id.replace("div",""))>karty_nowe){
+                   karty_nowe= parseInt(child.id.replace("div",""));
+                   }
+
                     console.log(karty_nowe);
+                    ////tuuuuuuuuuu
                 }
 
 
@@ -325,16 +330,18 @@
 
             var co_wyslac2=document.getElementById("p11");
             var child2=co_wyslac2.childNodes;
-
+            if(co_wyslac2.hasChildNodes()){
             [].forEach.call(child2,function(child2){
                 if(child2.nodeName=="DIV"){
-                    karty_nowe++;
+                    if(parseInt(child2.id.replace("div",""))>karty_nowe){
+                   karty_nowe= parseInt(child2.id.replace("div",""));
+                   }
                     console.log(karty_nowe);
                 }
 
 
             })
-
+        }
 
 
 
