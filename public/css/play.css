@@ -1,113 +1,136 @@
-        body {
-                font-family: "Helvetica Neue", sans-serif;
-                margin: 0;
-                padding: 0;
-                background-color: dimgrey;
-                }
+body {
+        font-family: "Helvetica Neue", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #142641;
+}
+
+.main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 25px;
+}
+
+.hp{
+        display: flex;
+        border-left-style: solid;
+        border-right-style: solid;
+        justify-content: center;
+}
+
+#t1{
+        width: 100%;
+        background-color: #233e61;
+        color: #e9aa28;
+        border-radius: 10px;
+        
+}
+
+#b1{
+        background-color: #16263c;
+        border-radius: 25px;
+        box-shadow: 0 2spx 25px rgba(0, 0, 0, 0.2);
+} 
+
+#t2{
+        width: 100%;
+        background-color: #233e61;
+        color: #e9aa28;
+        border-radius: 10px;
+}
+
+#b2{
+        background-color: #16263c;
+        border-radius: 25px;
+        width: 50px;
+        box-shadow: 0 2spx 25px rgba(0, 0, 0, 0.2);
+} 
+
+#zloto{
+        margin-left: 5%;
+        margin-right: 5%;
+        height: 1vh;
+        color: #e9aa28;
+        font-weight: bold;
+}
+
+.plansza{
+        background-color:#0f1a29;
+        color:#e9aa28;                
+        border-radius:0.25em;
+        width:800px;
+        min-height: 20vh;
+        border-style: solid;
+        border-color: black;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        box-shadow: 0 2px 25px rgba(0, 0, 0, 0.2);
+}
+
+#reka2{
+        border-bottom-style: none;
+}
+
+#p11{
+        border-bottom-style: none;
+}
+
+.karta_kontener {
+        padding-top: 5px;
+         position: relative;
+         text-align: center;
+         color: #e9aa28;
+}
+
+.karta_kontener_enm{
+        position: relative;
+        text-align: center;
+        color: white;
+}
+
+.karta_img{
+        height: 200px;
+}
+
+.tabela{
+        position: absolute;
+        bottom: 14px;
+        font-size: 1.2rem;
+        color: white;
+}
 
 
-        .plansza{
-                background-color:rgb(124, 120, 120);
-                color:#FFF;                
-                border-radius:0.25em;
-                width:800px;
-                min-height: 20vh;
-                border-style: solid;
-                border-color: black;
-                margin: 0 auto;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                }
-        button {
-                text-transform: uppercase;
-                font-size: 0.8rem;
-                padding: 3px 15px;
-                color: white;
-                line-height: 25px;
-                background-color: #00bcd4;
-                border: none;
-                border-radius: 2px;
-                cursor: pointer;
-                box-shadow: rgba(0, 0, 0, 0.12) 0 1px 6px, rgba(0, 0, 0, 0.12) 0 1px 4px;
-                transition: all 150ms ease-in;
-                outline: none;
+.bottom-buttons{
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+}
 
-                }
-        #p11{
-                border-bottom-style: none;
-                }
-        .hp{
-            border-left-style: solid;
-            border-right-style: solid;
-            display: flex;
-            
+.bottom-buttons > button{
+        width: 200px;
+        margin-left: 10px;
+        margin-top: 10px;
+        text-transform: uppercase;
+        font-size: 1rem;
+        font-weight: bold;
+        background-color: #0f1a29;
+        color: #e9aa28;
+        cursor: pointer;
+        line-height: 35px;
+        border: 0;
+        border-radius: 10px; 
+        outline: 0;
+        -webkit-transition: all .3s;
+        transition: all .3s;
+        box-shadow: rgba(0, 0, 0, 0.12) 0 1px 6px, rgba(0, 0, 0, 0.12) 0 1px 4px;
+}
 
-                
-                justify-content: center;
-                
-        }
-        #b1{
-            background-color: blue;
-        }
-        #reka2{
-                border-bottom-style: none;
-                }
-        .tabela{
-                position: absolute;
-                bottom: 20px;
-                font-size: 1.2rem;
-        }
-
-        .karta_kontener {
-                position: relative;
-                text-align: center;
-                color: white;
-                height: 100%;
-        }
-        .karta_kontener_enm{
-                position: relative;
-                text-align: center;
-                color: white;
-        }
-        #zatwierdz{
-                position: relative;
-                text-align: center;
-                width:800px;
-                align-items: center;
-                justify-content: center;
-        }
-        .main{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-                justify-content: center;
-        }
-        #t0{
-            align-self: flex-start;
-            border-style: solid;
-            
-            width: 100%;
-            
-        }    
-            #t2{
-            width: 100%;
-           background-color: crimson;
-           
-        }
-        #t1{
-            width: 100%;
-            background-color: brown;
-            
-        }
-        button:disabled,
-        button[disabled]{
-            border: 1px solid #999999;
-            background-color: #cccccc;
-            color: #666666;
-        }
-        #zloto{
-            margin-left: 5%;
-            margin-right: 5%;
-            height: 1vh;
-        }
+.bottom-buttons > button:hover {
+        background: #233e61;
+}

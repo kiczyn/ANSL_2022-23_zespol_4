@@ -1,45 +1,49 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css"   href="/css/play.css">
-    <title>Document</title>
-</head>
-<body>
-    <form action="/end" method="POST">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css"   href="/css/play.css">
+        <title>Pen & Sword</title>
+    </head>
+    <body>
+        <form action="/end" method="POST">
+            <button name="end" id="end" type="submit"  hidden>Wyloguj</button>
+        </form>
         
-        
-        <button name="end" id="end" type="submit"  hidden>Wyloguj</button>
-    </form>
-    <div class="main" id="main">
-        <div>
-            <div id="reka2" class="plansza"></div>
-            <div class="plansza" id="p12"></div>
-            <div class="hp" id="hp">
-                <table id="t1" >   
+        <div class="main" id="main">
+            <div>
+                <div id="reka2" class="plansza"></div>
+                <div class="plansza" id="p12"></div>
+                <div class="hp" id="hp">
 
-                    <th>Gracz</th>
-                    <th id="b1">20</th>
-                </table>
-                <p id="zloto">1</p>
-                <table id="t2">
-                    
-                    <th id="b2">20</th>
-                    <th>Przeciwnik</th>
-                </table>
-           
-               
+                    <table id="t1" >   
+                        <th><p id="login" >GRACZ</p></th>
+                        <th id="b1">20</th>
+                    </table>
+
+                    <p id="zloto">1</p>
+
+                    <table id="t2">
+                        <th id="b2">20</th>
+                        <th>Przeciwnik</th>
+                    </table>
+
+                </div>
+                
+                <div class="plansza" id="p11" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+                <div id="reka" class="plansza" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>
             </div>
-            <div class="plansza" id="p11" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
-            <div id="reka" class="plansza" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>
-        </div>
-        <button id="zatwierdz" onclick="send()">zatwierdz</button>
-    
+            
+            <div class="bottom-buttons">
+                <button id="zatwierdz" onclick="send()">zatwierdz</button>
+                <button >button</button>
+            </div>
     </div>
-   
-        <p id="stat" hidden></p>
-        <p id="id2" hidden>xddd</p>
-        <p id="temp2" hidden>owo</p>
+    
+    <p id="stat" hidden></p>
+    <p id="id2" hidden>xddd</p>
+    <p id="temp2" hidden>owo</p>
+
     <script src="/socket.io/socket.io.js"></script>
     <script>
 
@@ -123,8 +127,7 @@
 
                 var bck=document.createElement("img");
                 bck.src="https://cdn.discordapp.com/attachments/1061705001753391154/1061705069080359024/BACKWARD.png"
-                bck.height=250;
-                bck.width=120;
+                bck.className="karta_img";
                 rr.appendChild(bck);
 
 
@@ -186,8 +189,7 @@
                 var rr=document.getElementById("reka2");
              var bck=document.createElement("img");
                 bck.src="https://cdn.discordapp.com/attachments/1061705001753391154/1061705069080359024/BACKWARD.png";
-                bck.height=250;
-                bck.width=120;
+                bck.className="karta_img";
                 rr.appendChild(bck);
 
             }
@@ -357,5 +359,12 @@
             }
 
     </script>
-</body>
+
+    <script>
+        socket.on('login',(x)=>{
+            document.getElementById("login").innerHTML = x;
+            socket.emit('login')
+        })
+    </script>
+    </body>
 </html>
