@@ -150,7 +150,7 @@ app.post('/register',async(req,res)=>{
         res.render('login')
     }else
     {
-        res.send("uzytkownik juz istnieje!")
+        res.redirect("/register?exists=true&message=Error!")
     }
    
 })
@@ -188,10 +188,10 @@ app.post('/login',async(req,res)=>{
             
         }
         else{
-            res.send("zle haslo")
+            res.redirect("/login?wrong=true&message=Error!")
         }}
         catch{
-            res.send("blond")
+            res.redirect("/login?error=true&message=Erorr!")
         }
     
 })

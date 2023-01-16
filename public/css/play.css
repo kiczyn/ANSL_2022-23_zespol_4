@@ -1,5 +1,5 @@
 body {
-        font-family: "Helvetica Neue", sans-serif;
+        font-family: "OCR A Std", monospace;
         margin: 0;
         padding: 0;
         background-color: #142641;
@@ -32,6 +32,7 @@ body {
         background-color: #16263c;
         border-radius: 25px;
         box-shadow: 0 2spx 25px rgba(0, 0, 0, 0.2);
+        font-family: "Helvetica Neue", sans-serif;
 } 
 
 #t2{
@@ -46,6 +47,7 @@ body {
         border-radius: 25px;
         width: 50px;
         box-shadow: 0 2spx 25px rgba(0, 0, 0, 0.2);
+        font-family: "Helvetica Neue", sans-serif;
 } 
 
 #zloto{
@@ -102,6 +104,7 @@ body {
         bottom: 14px;
         font-size: 1.2rem;
         color: white;
+        font-family: "Helvetica Neue", sans-serif;
 }
 
 

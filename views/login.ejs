@@ -10,6 +10,7 @@
     </head>
     
     <body>
+
         <div id="particles-js"><canvas class="particles-js-canvas-el"></canvas></div>
         
         <div class="login-form">
@@ -34,6 +35,29 @@
 
         <script src="/scripts/particles.js"></script>
         <script src="/scripts/particles_theme.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+        <script>
+            var urlParams = new URLSearchParams(window.location.search);
+            if(urlParams.has('wrong') && urlParams.get('wrong')){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Błąd...',
+                    text: 'ZŁE HASŁO',
+                }).then(()=>{
+                console.log(window.location.hostname)
+                window.location.replace(window.location.origin + '/login');
+                })
+            }else if(urlParams.has('error') && urlParams.get('error')){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Błąd...',
+                    text: 'BŁĄD!',
+                }).then(()=>{
+                console.log(window.location.hostname)
+                window.location.replace(window.location.origin + '/login');
+                })
+            }
+        </script>
     </body>
 </html>
