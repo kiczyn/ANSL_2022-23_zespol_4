@@ -36,13 +36,16 @@
             
             <div class="bottom-buttons">
                 <button id="zatwierdz" onclick="send()">zatwierdz</button>
-                <button >button</button>
+                <button id="wyzuc" onclick="sell()">Wyrzuć</button>
+                    <p id="hpppp" hidden>x</p>
+    <p id="atakk" hidden>y</p>
             </div>
     </div>
     
     <p id="stat" hidden></p>
     <p id="id2" hidden>xddd</p>
     <p id="temp2" hidden>owo</p>
+
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
@@ -63,6 +66,21 @@
                 
         })
         var bool=1;
+        function sell(){
+            temp1=document.querySelectorAll(".karta_img");
+
+            [].forEach.call(temp1,function(temp1){
+                if(temp1.alt=="zaz"){
+                    var list=temp1.parentElement;
+                    while (list.hasChildNodes()) {
+                list.removeChild(list.lastChild);
+            }
+                  list.remove();
+                  karty--;
+            }
+            })
+
+        }
         function send(){
             is_playable()
             bool=1;
@@ -97,6 +115,8 @@
                     
     
             })
+            socket.emit('ready',document.getElementById("id2").innerHTML)
+            
 
                 
         }
@@ -147,13 +167,15 @@
             img.src=link;
             img.height=250;
             img.width=120;
+            
             img.draggable=false;
             src.appendChild(div);
             div.appendChild(img);
             create_table("enm"+enm+"div",atakx,kosztx,zyciex);
             enm++;}
             if(document.getElementById("zatwierdz").disabled){
-                graj();
+                
+                
             }
         })
         var atak_total=0;
@@ -177,9 +199,12 @@
             socket.emit('battle',document.getElementById("id2").innerHTML,atak_total);
 
         }
-
+        socket.on('ready',()=>{
+            graj();
+        })
         function reset(karty_3){
             document.getElementById("zatwierdz").disabled=false;
+            is_playable()
             document.getElementById('zloto').innerHTML=zloto;
              enm=0;
              if(karty<7){
@@ -200,20 +225,26 @@
         }
         var zloto=1;
 
-
+        var licznik=0;
         socket.on('battle2',at=>{
             
             zycie_total=0
+            atak_total=0;
             var co_wyslac=document.getElementById("p11");
             var child=co_wyslac.childNodes;         
             is_playable();
+            document.getElementById('atakk').innerHTML=at;
 
             [].forEach.call(child,function(child){
                 if(child.nodeName=="DIV"){
                     zycie_total+=parseInt(document.getElementById("zycie"+child.id).innerText);
+                    atak_total+=parseInt(document.getElementById("atak"+child.id).innerText);
+                    console.log("zycie_total")
                 }                
 
             })
+            
+            document.getElementById("hpppp").innerHTML=zycie_total;
             if(zycie_total<at){
                 document.getElementById("b1").innerText=parseInt( document.getElementById("b1").innerText)-at+zycie_total;
             }
@@ -238,7 +269,7 @@
 
         socket.on('zycie',(hpp,karty_2)=>{
             document.getElementById("b2").innerText=hpp;
-            reset(karty_2);
+           // reset(karty_2);
 
             is_playable()
         })
@@ -250,7 +281,7 @@
             var table=document.createElement("table");
             table.className="tabela";
             var tr=document.createElement("tr")
-            table.width=document.getElementById("img1").width;
+            table.width=120;
             var th_atak=document.createElement('th');
             var th_koszt=document.createElement('th');
             var th_zycie=document.createElement('th');
@@ -279,14 +310,42 @@
             zycie=x2;
             koszt=x0;
             karty++;
+            var karty_nowe=0;
+            var co_wyslac=document.getElementById("reka");
+            var child=co_wyslac.childNodes;
 
+            [].forEach.call(child,function(child){
+                if(child.nodeName=="DIV"){
+                    karty_nowe++;
+                    console.log(karty_nowe);
+                }
+
+
+            })
+
+            var co_wyslac2=document.getElementById("p11");
+            var child2=co_wyslac2.childNodes;
+
+            [].forEach.call(child2,function(child2){
+                if(child2.nodeName=="DIV"){
+                    karty_nowe++;
+                    console.log(karty_nowe);
+                }
+
+
+            })
+
+
+
+
+            karty_nowe++;
             var div=document.createElement("div");
             var src=document.getElementById('reka');
-            div.id=karty+"div";
+            div.id=karty_nowe+"div";
             var img = document.createElement("img");
             div.className="karta_kontener";      
-            img.id="img"+karty;
-            img.alt=karty;
+            img.id="img"+karty_nowe;
+            img.alt=karty_nowe;
             img.className="karta_img";
             img.src=x3;
             img.height=250;
@@ -296,13 +355,31 @@
             img.ondragstart=function drag(ev) {
                 ev.dataTransfer.setData("text", document.getElementById(ev.target.id).parentElement.id);
             }
-            
+            img.addEventListener("click",zaznaczone);
             src.appendChild(div);
             div.appendChild(img);
-            create_table(karty+"div",atak,koszt,zycie);
+            img.alt="x";
+            create_table(karty_nowe+"div",atak,koszt,zycie);
             is_playable();
         })
         var lpp=1;
+        const zaznaczone= e=>{
+            temp1=document.querySelectorAll(".karta_img");
+
+            [].forEach.call(temp1,function(temp1){
+                if(temp1.alt=="zaz"){
+                temp1.alt="x";
+                temp1.style.borderStyle="none";
+                is_playable();
+            }
+            })
+
+            
+            
+            e.target.style.borderStyle="dotted";
+            e.target.alt="zaz";
+            
+        }
         function is_playable(){
             //tutaj pisze
             var co_wyslac=document.getElementById("reka");
@@ -317,9 +394,11 @@
                     //console.log(lp)
                     if(parseInt( document.getElementById("koszt"+child.id).innerText)<=parseInt(document.getElementById('zloto').innerHTML)){
                         document.getElementById("img"+child.id.replace("div","")).draggable=true;
+                        
                         document.getElementById("img"+child.id.replace("div","")).style.borderStyle="solid";
                     }else{
                         document.getElementById("img"+child.id.replace("div","")).draggable=false;
+                        
                         document.getElementById("img"+child.id.replace("div","")).style.borderStyle="none";
                     }
                 

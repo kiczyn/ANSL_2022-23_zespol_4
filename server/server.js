@@ -119,7 +119,17 @@ socket.on('connection', function(io) {
     })
     io.on('battle',(id,atak)=>{
         console.log("zycie"+atak);
+        
         io.in(id).emit('battle2',atak);
+    })
+    io.on('ready',(id)=>{
+        wal++;
+        if(wal>1){
+            console.log(wal)
+            wal=0;
+            console.log(wal)
+            socket.in(id).emit('ready');
+        }
     })
     io.on('koniec',(id)=>{
         socket.in(id).emit('koniec');
@@ -139,7 +149,7 @@ socket.on('connection', function(io) {
 
 
 var zalogid=[];
-
+var wal=0;
 app.post('/register',async(req,res)=>{
     const data={
         login:req.body.login,
