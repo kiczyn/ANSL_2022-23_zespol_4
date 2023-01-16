@@ -365,19 +365,28 @@
         var lpp=1;
         const zaznaczone= e=>{
             temp1=document.querySelectorAll(".karta_img");
-
+            //console.log(e.target.id);
+            //console.log(e.target.alt);
             [].forEach.call(temp1,function(temp1){
-                if(temp1.alt=="zaz"){
+                if(temp1.alt=="zaz"&&temp1.id!=e.target.id){
                 temp1.alt="x";
                 temp1.style.borderStyle="none";
                 is_playable();
             }
             })
-
+            console.log(e.target.alt);
+            if(e.target.alt=="zaz"){
+                //console.log("true")
+                e.target.style.borderStyle="none";
+                e.target.alt="x";
+            }
             
-            
-            e.target.style.borderStyle="dotted";
+            else{
+                e.target.style.borderStyle="dotted";
             e.target.alt="zaz";
+            }
+            
+            
             
         }
         function is_playable(){
