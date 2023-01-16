@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css"   href="/css/particles.css">
         <link rel="stylesheet" type="text/css"   href="/css/play.css">
         <title>Pen & Sword</title>
     </head>
@@ -9,7 +10,7 @@
         <form action="/end" method="POST">
             <button name="end" id="end" type="submit"  hidden>Wyloguj</button>
         </form>
-        
+        <div id="particles-js"><canvas class="particles-js-canvas-el"></canvas></div>
         <div class="main" id="main">
             <div>
                 <div id="reka2" class="plansza"></div>
@@ -17,7 +18,7 @@
                 <div class="hp" id="hp">
 
                     <table id="t1" >   
-                        <th><p id="login" >GRACZ</p></th>
+                        <th><p id="login" >Gracz</p></th>
                         <th id="b1">20</th>
                     </table>
 
@@ -456,11 +457,8 @@
 
     </script>
 
-    <script>
-        socket.on('login',(x)=>{
-            document.getElementById("login").innerHTML = x;
-            socket.emit('login')
-        })
-    </script>
+    <script src="/scripts/particles.js"></script>
+    <script src="/scripts/particles_theme.js"></script>
+
     </body>
 </html>

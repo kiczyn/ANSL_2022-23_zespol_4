@@ -14,6 +14,7 @@ body {
 }
 
 .hp{
+        background-color: #0f1a29;
         display: flex;
         border-left-style: solid;
         border-right-style: solid;
@@ -31,6 +32,7 @@ body {
 #b1{
         background-color: #16263c;
         border-radius: 25px;
+        width: 50px;
         box-shadow: 0 2spx 25px rgba(0, 0, 0, 0.2);
         font-family: "Helvetica Neue", sans-serif;
 } 
@@ -62,7 +64,7 @@ body {
         background-color:#0f1a29;
         color:#e9aa28;                
         border-radius:0.25em;
-        width:800px;
+        width:920px;
         min-height: 20vh;
         border-style: solid;
         border-color: black;
@@ -136,4 +138,9 @@ body {
 
 .bottom-buttons > button:hover {
         background: #233e61;
+}
+
+.bottom-buttons > button:disabled {
+        background: #0f1a29;
+        color: #233e61;
 }
